@@ -404,8 +404,7 @@ if (isset($dataKomentarRaw['table']['rows'])) {
                     <button type="submit" id="btnKirim" class="btn btn-primary-custom w-100 py-2">Kirim Testimoni</button>
                     
                     <div id="notifikasiForm" class="alert d-none mt-3" role="alert"></div>
-                    
-                    <small class="text-muted mt-2 d-block text-center" style="font-size: 0.75rem;">*Testimoni akan ditinjau owner sebelum ditampilkan</small>
+                
                 </form>
             </div>
         </div>
@@ -445,7 +444,7 @@ if (isset($dataKomentarRaw['table']['rows'])) {
                     btnKirim.innerText = 'Kirim Testimoni';
                     
                     notifikasi.className = 'alert alert-success mt-3';
-                    notifikasi.innerText = 'Testimoni sukses dikirim! Data masuk ke Google Sheets dan menunggu persetujuan owner.';
+                    notifikasi.innerText = 'Terima kasih! Testimoni Anda berhasil dikirim dan akan segera kami tampilkan.';
                     notifikasi.classList.remove('d-none');
                     form.reset(); 
                 } else {
