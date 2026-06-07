@@ -33,7 +33,7 @@ function fetchGoogleSheetData($url) {
 }
 
 // 1. Fetch Data Menu
-$urlMenu = "https://docs.google.com/spreadsheets/d/1Pqorrx1U1CJyJ44J7qZ0Dtozs8UGzz1SloO14ZAdlmk/gviz/tq?tqx=out:json&sheet=MENU";
+$urlMenu = "https://docs.google.com/spreadsheets/d/1p74nKGJfQG5oRGhYI8KMXmUCSKyLtt9iK8y06B1q2SE/gviz/tq?tqx=out:json&sheet=MENU";
 $dataMenuRaw = fetchGoogleSheetData($urlMenu);
 
 $menuByCategory = [];
@@ -53,7 +53,7 @@ if (isset($dataMenuRaw['table']['rows'])) {
 }
 
 // 2. Fetch Data Komentar (Hanya tampilkan jika status = 1)
-$urlKomentar = "https://docs.google.com/spreadsheets/d/1Pqorrx1U1CJyJ44J7qZ0Dtozs8UGzz1SloO14ZAdlmk/gviz/tq?tqx=out:json&sheet=KOMENTAR";
+$urlKomentar = "https://docs.google.com/spreadsheets/1p74nKGJfQG5oRGhYI8KMXmUCSKyLtt9iK8y06B1q2SE/gviz/tq?tqx=out:json&sheet=KOMENTAR";
 $dataKomentarRaw = fetchGoogleSheetData($urlKomentar);
 
 $komentars = [];
