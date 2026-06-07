@@ -33,6 +33,7 @@ function fetchGoogleSheetData($url) {
 }
 
 // 1. Fetch Data Menu
+// Menggunakan ID Spreadsheet terbaru kamu
 $urlMenu = "https://docs.google.com/spreadsheets/d/1p74nKGJfQG5oRGhYI8KMXmUCSKyLtt9iK8y06B1q2SE/gviz/tq?tqx=out:json&sheet=MENU";
 $dataMenuRaw = fetchGoogleSheetData($urlMenu);
 
@@ -46,17 +47,18 @@ if (isset($dataMenuRaw['table']['rows'])) {
                 'id'        => $row['c'][0]['v'] ?? '',
                 'nama_menu' => $namaMenu,
                 'harga'     => $row['c'][3]['v'] ?? 0,
-                'deskripsi' => $row['c'][4]['v'] ?? ''
-                // Kolom ke-6 (Kolom F) di Google Sheets untuk URL Gambar
-                // Diberi gambar default (placeholder) jika kolom F kosong
-                'gambar'    => $row['c'][5]['v'] ?? 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
+                // Mengambil URL Gambar dari Kolom E (indeks 4)
+                'gambar'    => $row['c'][4]['v'] ?? 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
+                // Mengambil Deskripsi dari Kolom F (indeks 5)
+                'deskripsi' => $row['c'][5]['v'] ?? '' 
             ];
         }
     }
 }
 
 // 2. Fetch Data Komentar (Hanya tampilkan jika status = 1)
-$urlKomentar = "https://docs.google.com/spreadsheets/1p74nKGJfQG5oRGhYI8KMXmUCSKyLtt9iK8y06B1q2SE/gviz/tq?tqx=out:json&sheet=KOMENTAR";
+// Telah ditambahkan /d/ sebelum ID spreadsheet agar URL valid
+$urlKomentar = "https://docs.google.com/spreadsheets/d/1p74nKGJfQG5oRGhYI8KMXmUCSKyLtt9iK8y06B1q2SE/gviz/tq?tqx=out:json&sheet=KOMENTAR";
 $dataKomentarRaw = fetchGoogleSheetData($urlKomentar);
 
 $komentars = [];
