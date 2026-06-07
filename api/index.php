@@ -388,23 +388,80 @@ if (isset($dataKomentarRaw['table']['rows'])) {
                     </div>
                 </div>
 
-                <div class="col-lg-6 order-1 order-lg-2">
-                    <div class="card border-0 shadow-sm rounded-4 p-3 p-md-4" style="background-color: #f4fafd;">
-                        <h4 class="fw-bold mb-3 mb-md-4 fs-5 text-center text-lg-start">Kirim Testimoni</h4>
-                        <form action="https://wa.me/6281213663184" method="GET" target="_blank">
-                            <div class="mb-3">
-                                <label class="form-label fw-semibold fs-6">Nama</label>
-                                <input type="text" name="text" class="form-control rounded-3 py-2" placeholder="Masukkan nama Anda" required>
-                            </div>
-                            <div class="mb-4">
-                                <label class="form-label fw-semibold fs-6">Komentar</label>
-                                <textarea class="form-control rounded-3" rows="3" placeholder="Bagaimana pengalaman Anda?" required></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary-custom w-100 py-2">Kirim Testimoni</button>
-                            <small class="text-muted mt-2 d-block text-center" style="font-size: 0.75rem;">*Testimoni akan ditinjau owner sebelum ditampilkan</small>
-                        </form>
+               <div class="col-lg-6 order-1 order-lg-2">
+            <div class="card border-0 shadow-sm rounded-4 p-3 p-md-4" style="background-color: #f4fafd;">
+                <h4 class="fw-bold mb-3 mb-md-4 fs-5 text-center text-lg-start">Kirim Testimoni</h4>
+                
+                <form id="formTestimoni">
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold fs-6">Nama</label>
+                        <input type="text" name="nama" class="form-control rounded-3 py-2" placeholder="Masukkan nama Anda" required>
                     </div>
-                </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold fs-6">Komentar</label>
+                        <textarea name="komentar" class="form-control rounded-3" rows="3" placeholder="Bagaimana pengalaman Anda?" required></textarea>
+                    </div>
+                    <button type="submit" id="btnKirim" class="btn btn-primary-custom w-100 py-2">Kirim Testimoni</button>
+                    
+                    <div id="notifikasiForm" class="alert d-none mt-3" role="alert"></div>
+                    
+                    <small class="text-muted mt-2 d-block text-center" style="font-size: 0.75rem;">*Testimoni akan ditinjau owner sebelum ditampilkan</small>
+                </form>
+            </div>
+        </div>
+
+        <script>
+        document.getElementById('formTestimoni').addEventListener('submit', function(e) {
+            e.preventDefault(); // Mencegah web reload
+
+            const form = this;
+            const btnKirim = document.getElementById('btnKirim');
+            const notifikasi = document.getElementById('notifikasiForm');
+
+            btnKirim.disabled = true;
+            btnKirim.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Mengirim...';
+
+            // --- PASTE LINK DARI SHEET.BEST KAMU DI BAWAH INI ---
+            const urlSheetBest = "https://api.sheetbest.com/sheets/b7e55abb-fece-44dd-aea5-7a2cd3056496";
+
+            // Menyusun data sesuai dengan header di Google Sheets
+            const dataKomentar = {
+                "nama": form.nama.value,
+                "komentar": form.komentar.value,
+                "status": "0" // Angka 0 otomatis masuk agar web menahan komentar tersebut
+            };
+
+            fetch(urlSheetBest, {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataKomentar)
+            })
+            .then(response => {
+                if(response.ok) {
+                    btnKirim.disabled = false;
+                    btnKirim.innerText = 'Kirim Testimoni';
+                    
+                    notifikasi.className = 'alert alert-success mt-3';
+                    notifikasi.innerText = 'Testimoni sukses dikirim! Data masuk ke Google Sheets dan menunggu persetujuan owner.';
+                    notifikasi.classList.remove('d-none');
+                    form.reset(); 
+                } else {
+                    throw new Error('Gagal merespons server');
+                }
+            })
+            .catch(error => {
+                btnKirim.disabled = false;
+                btnKirim.innerText = 'Kirim Testimoni';
+                notifikasi.className = 'alert alert-danger mt-3';
+                notifikasi.innerText = 'Terjadi kesalahan saat mengirim data. Coba lagi.';
+                notifikasi.classList.remove('d-none');
+                console.error('Error:', error);
+            });
+        });
+        </script>
             </div>
         </section>
         
