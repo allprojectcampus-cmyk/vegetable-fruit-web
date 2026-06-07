@@ -467,9 +467,9 @@ if (isset($dataKomentarRaw['table']['rows'])) {
         <section class="mt-4 mb-4 mb-lg-5 text-center pb-4 border-bottom">
             <h5 class="fw-bold text-muted mb-3 fs-6">Tersedia juga di:</h5>
             <div class="d-flex flex-wrap justify-content-center gap-2">
-                <a href="<?= $linkGoFood ?>" target="_blank" class="partner-badge bg-gofood"><i class="bi bi-bag-check-fill me-1"></i> GoFood</a>
+                <a href="<?= $linkGoFood ?>" target="https://gofood.link/a/QceNqx7" class="partner-badge bg-gofood"><i class="bi bi-bag-check-fill me-1"></i> GoFood</a>
                 <a href="<?= $linkGrabFood ?>" target="_blank" class="partner-badge bg-grabfood"><i class="bi bi-bag-check-fill me-1"></i> GrabFood</a>
-                <a href="<?= $linkShopeeFood ?>" target="_blank" class="partner-badge bg-shopeefood"><i class="bi bi-bag-check-fill me-1"></i> ShopeeFood</a>
+                <a href="<?= $linkShopeeFood ?>" target="https://shopee.co.id/universal-link/now-food/shop/23044577?deep_and_deferred=1&shareChannel=copy_link" class="partner-badge bg-shopeefood"><i class="bi bi-bag-check-fill me-1"></i> ShopeeFood</a>
             </div>
         </section>
 
