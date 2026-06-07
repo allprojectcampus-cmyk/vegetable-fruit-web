@@ -47,6 +47,9 @@ if (isset($dataMenuRaw['table']['rows'])) {
                 'nama_menu' => $namaMenu,
                 'harga'     => $row['c'][3]['v'] ?? 0,
                 'deskripsi' => $row['c'][4]['v'] ?? ''
+                // Kolom ke-6 (Kolom F) di Google Sheets untuk URL Gambar
+                // Diberi gambar default (placeholder) jika kolom F kosong
+                'gambar'    => $row['c'][5]['v'] ?? 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
             ];
         }
     }
@@ -285,16 +288,12 @@ if (isset($dataKomentarRaw['table']['rows'])) {
                     <h3 class="fw-bold mt-4 mt-lg-5 mb-3 fs-4" style="color: var(--primary);"><?= htmlspecialchars($kategori) ?></h3>
                     <div class="row g-2 g-md-4">
                         <?php foreach ($menus as $item): 
-                            $imgPlaceholder = (stripos($kategori, 'Jus') !== false) 
-                                ? "https://images.unsplash.com/photo-1600271886742-f049cd451bba?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" 
-                                : "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80";
-                            
                             $waText = urlencode("Halo min, saya mau pesan " . $item['nama_menu']);
                         ?>
                         <div class="col-6 col-md-4 col-lg-3">
                             <div class="product-card d-flex flex-column h-100">
                                 <div class="position-relative">
-                                    <img src="<?= $imgPlaceholder ?>" alt="<?= htmlspecialchars($item['nama_menu']) ?>" class="product-img">
+                                    <img src="<?= htmlspecialchars($item['gambar']) ?>" alt="<?= htmlspecialchars($item['nama_menu']) ?>" class="product-img">
                                     <span class="badge badge-kategori position-absolute top-0 end-0 m-2 m-md-3 rounded-pill">
                                         <?= htmlspecialchars($kategori) ?>
                                     </span>
