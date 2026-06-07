@@ -343,4 +343,107 @@ if (isset($dataKomentarRaw['table']['rows'])) {
                         <div class="p-3 p-md-4 d-flex flex-column justify-content-between flex-grow-1">
                             <div>
                                 <h5 class="fw-bold fs-6 fs-md-5">Outlet 2: Karya Bakti</h5>
-                                <p class="text-muted small">Jl. Karya Bakti No.3, Indra Kasih, Kec. Medan Tembung,
+                                <p class="text-muted small">Jl. Karya Bakti No.3, Indra Kasih, Kec. Medan Tembung, Kota Medan, Sumatera Utara 20221</p>
+                            </div>
+                            <a href="https://maps.google.com/?q=Jl.+Karya+Bakti+No.3,+Indra+Kasih,+Kec.+Medan+Tembung,+Kota+Medan,+Sumatera+Utara+20221" target="_blank" class="btn btn-secondary-custom w-100 mt-3">
+                                <i class="bi bi-geo-alt-fill"></i> Rute Google Maps
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimoni" class="mt-5 pt-4 pt-lg-5 mb-5">
+            <div class="row g-4 g-lg-5">
+                <div class="col-lg-6 order-2 order-lg-1">
+                    <h3 class="fw-bold mb-3 mb-lg-4 fs-4 text-center text-lg-start" style="color: var(--primary);">Apa Kata Mereka?</h3>
+                    <div class="d-flex flex-column gap-3">
+                        <?php if (empty($komentars)): ?>
+                            <p class="text-muted text-center text-lg-start">Belum ada ulasan. Jadilah yang pertama!</p>
+                        <?php else: ?>
+                            <?php foreach ($komentars as $testi): ?>
+                                <div class="testi-card p-3 p-md-4 shadow-sm">
+                                    <div class="text-warning mb-2 fs-6">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                                    </div>
+                                    <p class="fst-italic mb-2 fs-6">"<?= htmlspecialchars($testi['komentar']) ?>"</p>
+                                    <h6 class="fw-bold mb-0 text-end">- <?= htmlspecialchars($testi['nama']) ?></h6>
+                                </div>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 order-1 order-lg-2">
+                    <div class="card border-0 shadow-sm rounded-4 p-3 p-md-4" style="background-color: #f4fafd;">
+                        <h4 class="fw-bold mb-3 mb-md-4 fs-5 text-center text-lg-start">Kirim Testimoni</h4>
+                        <form action="https://wa.me/6281213663184" method="GET" target="_blank">
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold fs-6">Nama</label>
+                                <input type="text" name="text" class="form-control rounded-3 py-2" placeholder="Masukkan nama Anda" required>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold fs-6">Komentar</label>
+                                <textarea class="form-control rounded-3" rows="3" placeholder="Bagaimana pengalaman Anda?" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary-custom w-100 py-2">Kirim Testimoni</button>
+                            <small class="text-muted mt-2 d-block text-center" style="font-size: 0.75rem;">*Testimoni akan ditinjau owner sebelum ditampilkan</small>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="mt-4 mb-4 mb-lg-5 text-center pb-4 border-bottom">
+            <h5 class="fw-bold text-muted mb-3 fs-6">Tersedia juga di:</h5>
+            <div class="d-flex flex-wrap justify-content-center gap-2">
+                <a href="<?= $linkGoFood ?>" target="_blank" class="partner-badge bg-gofood"><i class="bi bi-bag-check-fill me-1"></i> GoFood</a>
+                <a href="<?= $linkGrabFood ?>" target="_blank" class="partner-badge bg-grabfood"><i class="bi bi-bag-check-fill me-1"></i> GrabFood</a>
+                <a href="<?= $linkShopeeFood ?>" target="_blank" class="partner-badge bg-shopeefood"><i class="bi bi-bag-check-fill me-1"></i> ShopeeFood</a>
+            </div>
+        </section>
+
+    </div> 
+
+    <footer class="bg-light pt-4 pt-lg-5 pb-3 text-center text-md-start">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="fw-bold fs-5" style="color: var(--primary);">
+                        <i class="bi bi-basket-fill me-2"></i>Vegetable & Fruit
+                    </h5>
+                    <p class="text-muted small mt-2 mt-md-3">Raw Freshness for Everyone. Menyajikan jus buah dan sayur berkualitas premium di Kota Medan.</p>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold fs-6">LOKASI</h6>
+                    <ul class="list-unstyled text-muted small mt-2 mt-md-3 lh-lg">
+                        <li><a href="#map-pancing" class="text-decoration-none text-muted">Jl. Pancing No. 137</a></li>
+                        <li><a href="#map-karya" class="text-decoration-none text-muted">Jl. Karya Bakti No. 3</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold fs-6">HUBUNGI KAMI</h6>
+                    <ul class="list-unstyled text-muted small mt-2 mt-md-3 lh-lg">
+                       <li>
+                            <a href="https://instagram.com/vegetablefruit.mdn" target="https://www.instagram.com/vegetableandfruitbusiness?igsh=MTcyeWo2djZkYncyNg==" class="text-decoration-none text-muted">
+                                <i class="bi bi-instagram me-2"></i> @vegetableandfruitbusiness
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://wa.me/6281213663184" target="_blank" class="text-decoration-none text-muted">
+                                <i class="bi bi-whatsapp me-2"></i> 0812-1366-3184
+                            </a>
+                        </li> 
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-4 mt-lg-5 pt-3 border-top text-muted" style="font-size: 0.75rem;">
+                © 2026 Vegetable & Fruit, Medan. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
