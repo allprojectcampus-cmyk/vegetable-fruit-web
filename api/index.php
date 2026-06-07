@@ -43,14 +43,14 @@ if (isset($dataMenuRaw['table']['rows'])) {
         $namaMenu = $row['c'][1]['v'] ?? null;
         if ($namaMenu) { 
             $kategori = $row['c'][2]['v'] ?? 'Lainnya';
-            $menuByCategory[$kategori][] = [
+           $menuByCategory[$kategori][] = [
                 'id'        => $row['c'][0]['v'] ?? '',
                 'nama_menu' => $namaMenu,
                 'harga'     => $row['c'][3]['v'] ?? 0,
-                // Mengambil URL Gambar dari Kolom E (indeks 4)
-                'gambar'    => $row['c'][4]['v'] ?? 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80',
-                // Mengambil Deskripsi dari Kolom F (indeks 5)
-                'deskripsi' => $row['c'][5]['v'] ?? '' 
+                // Deskripsi dari Kolom E (indeks 4)
+                'deskripsi' => $row['c'][4]['v'] ?? '', 
+                // Gambar dari Kolom F (indeks 5)
+                'gambar'    => $row['c'][5]['v'] ?? 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
             ];
         }
     }
