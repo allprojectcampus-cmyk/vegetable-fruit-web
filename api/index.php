@@ -43,14 +43,26 @@ if (isset($dataMenuRaw['table']['rows'])) {
         $namaMenu = $row['c'][1]['v'] ?? null;
         if ($namaMenu) { 
             $kategori = $row['c'][2]['v'] ?? 'Lainnya';
-           $menuByCategory[$kategori][] = [
+            
+            // Mengambil isi mentah dari Kolom F (indeks 5)
+            $gambarRaw = $row['c'][5]['v'] ?? '';
+            
+            // KODE PINTAR: Otomatis mengubah link Google Drive biasa menjadi Direct Link
+            if (strpos($gambarRaw, 'drive.google.com/file/d/') !== false) {
+                preg_match('/d\/([a-zA-Z0-9-_]+)/', $gambarRaw, $matches);
+                $idGambar = $matches[1] ?? '';
+                $gambarFinal = 'https://drive.google.com/uc?export=view&id=' . $idGambar;
+            } else {
+                // Jika kosong atau pakai link lain, gunakan gambar default
+                $gambarFinal = $gambarRaw ?: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';
+            }
+
+            $menuByCategory[$kategori][] = [
                 'id'        => $row['c'][0]['v'] ?? '',
                 'nama_menu' => $namaMenu,
                 'harga'     => $row['c'][3]['v'] ?? 0,
-                // Deskripsi dari Kolom E (indeks 4)
                 'deskripsi' => $row['c'][4]['v'] ?? '', 
-                // Gambar dari Kolom F (indeks 5)
-                'gambar'    => $row['c'][5]['v'] ?? 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80'
+                'gambar'    => $gambarFinal // Memasukkan hasil gambar yang sudah diproses
             ];
         }
     }
