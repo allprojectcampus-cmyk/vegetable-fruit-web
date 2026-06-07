@@ -47,11 +47,12 @@ if (isset($dataMenuRaw['table']['rows'])) {
             // Mengambil isi mentah dari Kolom F (indeks 5)
             $gambarRaw = $row['c'][5]['v'] ?? '';
             
-            // KODE PINTAR: Otomatis mengubah link Google Drive biasa menjadi Direct Link
+            // KODE PINTAR V2: Menembus Blokir Keamanan Google Drive terbaru
             if (strpos($gambarRaw, 'drive.google.com/file/d/') !== false) {
                 preg_match('/d\/([a-zA-Z0-9-_]+)/', $gambarRaw, $matches);
                 $idGambar = $matches[1] ?? '';
-                $gambarFinal = 'https://drive.google.com/uc?export=view&id=' . $idGambar;
+                // Menggunakan server lh3 agar gambar tidak diblokir oleh web
+                $gambarFinal = 'https://lh3.googleusercontent.com/d/' . $idGambar;
             } else {
                 // Jika kosong atau pakai link lain, gunakan gambar default
                 $gambarFinal = $gambarRaw ?: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80';
